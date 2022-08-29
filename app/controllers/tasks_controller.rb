@@ -11,6 +11,7 @@ class TasksController < ApplicationController
     @task = Task.new(params.require(:task).permit(:name, :content))
     if @task.save
       redirect_to tasks_path
+      flash[:success] = "タスクを作成しました"
     else
       render :new
     end
@@ -30,6 +31,7 @@ class TasksController < ApplicationController
     
     if @task.update(params.require(:task).permit(:name, :content))
       redirect_to tasks_path
+      flash[:success] = "タスクを編集しました"
     else
       render :edit
     end
@@ -39,5 +41,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path
+    flash[:success] = "タスクを削除しました"
   end
 end
