@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+***
+# Task
 
-* System dependencies
+| id | name | content | user_id |
+| ---- | ---- | ---- | ---- |
+| 1 | 掃除 | 台所を掃除する |1|
 
-* Configuration
+***
+# User
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| id | name | email |
+| ---- | ---- | ---- |
+| 1 | 加田井助 | kadaitasuku_10000you@xxxxx.com |

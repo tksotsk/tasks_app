@@ -1,0 +1,29 @@
+<h2>Edit</h2>
+
+
+<% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this @task from being saved:</h2>
+
+      <ul>
+        <% @task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with(model: @task, local: true, url: task_path) do |form| %>
+
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>  
+<br>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.submit %>
+
+<% end %>
+
+<%= link_to 'Back', tasks_path %>
