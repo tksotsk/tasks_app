@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params.require(:task).permit(:name, :content))
     if @task.save
-      redirect_to tasks_path
+      redirect_to task_path(@task.id)
       flash[:success] = "タスクを作成しました"
     else
       render :new

@@ -1,8 +1,19 @@
 <h1>Tasks#new</h1>
 <p>Find me in app/views/tasks/new.html.erb</p>
 
-<%= form_with(model: @task, local: true, url: tasks_path) do |form| %>
+<% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t("errors.template.header.other", model: Task, count: @task.errors.count) %></h2>
 
+      <ul>
+        <% @task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_with(model: @task, local: true) do |form| %>
 
   <%= form.label :name %>
   <%= form.text_field :name %>  
@@ -10,7 +21,7 @@
   <%= form.label :content %>
   <%= form.text_area :content %>
 
-  <%= form.submit %>
+  <%= form.submit "登録する"%>
 
 <% end %>
 
