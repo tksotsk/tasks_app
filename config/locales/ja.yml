@@ -7,6 +7,19 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      task: タスク
+      user: ユーザー
+    attributes:
+      task:
+        name: タスクの名前
+        content: 内容
+      user:
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
   date:
     abbr_day_names:
     - 日
@@ -205,3 +218,23 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  contents:
+    index:
+      show: タスクの詳細を見る
+      new:  新しくタスクをつくる
+      edit: タスクを編集する 
+    show: 
+      index: タスクの一覧を見る
+      new:  新しくタスクをつくる
+      edit: タスクを編集する 
+      back: 一覧画面に戻る
+    new:
+      index: タスクの一覧を見る
+      show: タスクの詳細を見る
+      edit: タスクを編集する 
+      back: 一覧画面に戻る
+    edit: 
+      index: タスクの一覧を見る
+      show: タスクの詳細を見る
+      new:  新しくタスクをつくる
+      back: 一覧画面に戻る
