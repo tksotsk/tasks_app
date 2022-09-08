@@ -218,23 +218,27 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  contents:
+  tasks:
     index:
       show: タスクの詳細を見る
       new:  新しくタスクをつくる
       edit: タスクを編集する 
+      destroy: タスクを削除する
     show: 
       index: タスクの一覧を見る
       new:  新しくタスクをつくる
       edit: タスクを編集する 
+      destroy: タスクを削除する
       back: 一覧画面に戻る
     new:
       index: タスクの一覧を見る
       show: タスクの詳細を見る
       edit: タスクを編集する 
+      destroy: タスクを削除する
       back: 一覧画面に戻る
     edit: 
       index: タスクの一覧を見る
       show: タスクの詳細を見る
       new:  新しくタスクをつくる
+      destroy: タスクを削除する
       back: 一覧画面に戻る
