@@ -1,13 +1,15 @@
 
+<div>
 <% @tasks.each do |task| %>
-<h3><%= task.name %></h3>
-<p><%= task.content %></p>
-<p><%= link_to 'show', task_path(task.id) %></p>
-<p><%= link_to 'edit', edit_task_path(task.id) %></p>
-<p><%= link_to 'destroy', task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<h4 class= "task_row"><%= t('activerecord.attributes.task.name') %>:<%= task.name%></h4>
+<p><%= t('activerecord.attributes.task.content') %>:<%= task.content %></p>
+</div>
+<p><%= link_to t('.show'), task_path(task.id) %></p>
+<p><%= link_to t('.edit'), edit_task_path(task.id) %></p>
+<p><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
-
-<p><%= link_to 'new', new_task_path %></p>
+<br>
+<p><%= link_to t('tasks.index.new'), new_task_path %></p>
 
 
 

@@ -16,14 +16,14 @@
 <%= form_with(model: @task, local: true, url: task_path) do |form| %>
 
 
-  <%= form.label :name %>
-  <%= form.text_field :name %>  
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>  
 <br>
-  <%= form.label :content %>
-  <%= form.text_area :content %>
-
-  <%= form.submit %>
+  <%= form.label :content %><br>
+  <%= form.text_area :content %><br>
+<br>
+  <%= form.submit "編集する"%>
 
 <% end %>
 
-<%= link_to 'Back', tasks_path %>
+<%= link_to t('.back'), tasks_path %>
