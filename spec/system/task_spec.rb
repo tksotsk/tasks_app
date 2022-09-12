@@ -50,8 +50,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
     
-    context 'タスクが作成日時の降順に並んでいる場合' do
-      it '新しいタスクが一番上に表示される' do
+    context '終了期限のボタンをクリックした場合' do
+      it '終了期限の近いタスクが一番上に表示される' do
         click_on I18n.t('tasks.index.limit')
         sleep 1.0
         pass =all('.task_name_row')
@@ -62,6 +62,18 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
     
+    context '優先度のボタンをクリックした場合' do
+      it '優先度の高いタスクが一番上に表示される' do
+        click_on I18n.t('tasks.index.limit')
+        sleep 1.0
+        click_on I18n.t('tasks.index.priority')
+        sleep 1.0
+        pass =all('.task_name_row')
+        expect(pass[0]).to have_content "task3"
+        expect(pass[1]).to have_content "task2"
+        expect(pass[2]).to have_content "task1"
+      end
+    end
     
   end
   
@@ -81,8 +93,10 @@ RSpec.describe 'タスク管理機能', type: :system do
   
   describe '検索機能' do
     before do
-      FactoryBot.create(:second_task)
       
+      FactoryBot.create(:first_task)
+      FactoryBot.create(:second_task)
+      FactoryBot.create(:third_task)
     end
     
     context 'タイトルであいまい検索をした場合' do

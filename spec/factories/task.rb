@@ -7,6 +7,7 @@ FactoryBot.define do
       status=["未着手","着手中","完了"]
       status[rand(2)] 
     end
+    sequence(:priority) { |n| (n-1)%3 }
   end
 
   factory :first_task, class: Task do
@@ -14,12 +15,22 @@ FactoryBot.define do
     content { 'content_chakusyuchuu' }
     limit {Time.now}
     status {"着手中"}
+    priority {2}
   end
-
+  
   factory :second_task, class: Task do
     name { 'sample_chakusyuchuu' }
     content { 'content_chakusyuchuu' }
     limit {Time.now}
-    status {"着手中"}
+    status {"未着手"}
+    priority {1}
+  end
+  
+  factory :third_task, class: Task do
+    name { 'task_chakusyuchuu' }
+    content { 'content_chakusyuchuu' }
+    limit {Time.now}
+    status {"未着手"}
+    priority {0}
   end
 end

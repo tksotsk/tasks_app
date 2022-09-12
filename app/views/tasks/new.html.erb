@@ -27,7 +27,7 @@
   <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %><br>
   <br>
   <%= form.label :priority %><br>
-  <%= form.select :priority, [["低", "低"], ["中", "中"], ["高", "高"]], include_blank: "選択して下さい" %><br>
+  <%= form.select :priority, [["低", 0], ["中", 1], ["高", 2]], include_blank: "選択して下さい" %><br>
   <br>
   <%= form.submit "登録する"%>
 

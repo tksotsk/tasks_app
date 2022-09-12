@@ -229,6 +229,7 @@ ja:
       destroy: タスクを削除する
       back: 戻る
       limit: 終了期限
+      priority: 優先度
     show: 
       index: タスクの一覧を見る
       new:  新しくタスクをつくる

@@ -1,30 +1,33 @@
 class TasksController < ApplicationController
   def index
-    @tasks=params[:sort_expired]?
-      Task.sort_limit :
-      Task.sort_created_at
+    
+    @tasks=params[:sort_expired] && params[:sort_expired]=="true1"?
+    Task.page(params[:page]).per(6).sort_limit :
+    params[:sort_expired] && params[:sort_expired]=="true2"?
+    Task.page(params[:page]).per(6).sort_priority :
+    Task.page(params[:page]).per(6).sort_created_at
+    
+    
+    if  @tasks && params[:task]
       
       
-      if  @tasks && params[:task]
-        
-        
-        if params[:task][:name]!="" && params[:task][:status]==""
-          @tasks=@tasks.name_search(params[:task][:name])
-        end
-        
-        if params[:task][:name]=="" && params[:task][:status]!=""
-          @tasks=@tasks.status_search(params[:task][:status])
-        end
-        
-        if params[:task][:name]!="" && params[:task][:status]!=""
-          @tasks=@tasks.name_search(params[:task][:name]).status_search(params[:task][:status])
-        end
-        # binding.pry
+      if params[:task][:name]!="" && params[:task][:status]==""
+        @tasks=@tasks.name_search(params[:task][:name])
+      end
+      
+      if params[:task][:name]=="" && params[:task][:status]!=""
+        @tasks=@tasks.status_search(params[:task][:status])
+      end
+      
+      if params[:task][:name]!="" && params[:task][:status]!=""
+        @tasks=@tasks.name_search(params[:task][:name]).status_search(params[:task][:status])
+      end
+      # binding.pry
       
     end
     
   end
-
+    
   def new
     @task = Task.new
   end

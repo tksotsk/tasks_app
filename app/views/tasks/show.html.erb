@@ -1,9 +1,10 @@
 
 <h3><%= @task.name %></h3>
 <p><%= @task.content %></p>
-<p><%= @task.ja_limit %></p>
+<p><%= @task.ja_limit if @task.limit%></p>
 <p><%= @task.status %></p>
-<p><%= @task.priority %></p>
+<% pr=["低", "中", "高"] %>
+<p><%= pr[@task.priority] if @task.priority%></p>
 
 
 <%= link_to t('.back'), tasks_path %>
