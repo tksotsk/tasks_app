@@ -1,0 +1,77 @@
+{
+  "media query": {
+    "prefix": "qq",
+    "body": [
+      "@include query($$break) {",
+      " $0",
+      "}"
+    ],
+    "description": "sass snippet for media query"
+  },
+
+  "c1": {
+    "prefix": "c1",
+    "body": [
+        "{",
+        "  \"\": {",
+        "    \"prefix\": \"\",",
+        "    \"body\": [",
+        "    ],",
+        "    \"description\": \"\"",
+        "  }",
+        "}",
+    ],
+    "description": ""
+},
+
+
+  "4yt": {
+    "prefix": "nbuu",
+    "body": [
+        "oiuoiuo$CLIPBOARD$TM_SELECTED_TEXT$TM_SELECTED_TEXT$TM_SELECTED_TEXT$TM_SELECTED_TEXT"
+    ],
+    "description": ""
+  },
+
+  "c2": {
+    "prefix": "c2",
+    "body": [
+        "class TasksController < ApplicationController",
+        "  def index",
+        "    @tasks=params[:sort_expired]?",
+        "      Task.sort_limit :",
+        "      Task.sort_created_at",
+        "      ",
+        "      ",
+        "      if  @tasks && params[:task]",
+        "        ",
+        "        ",
+        "        if params[:task][:name]!=\"\" && params[:task][:status]==\"\"",
+        "          @tasks=@tasks.where(\"name LIKE ?\", \"%\"+params[:task][:name]+\"%\")        ",
+        "        end",
+        "        ",
+        "        if params[:task][:name]==\"\" && params[:task][:status]!=\"\"",
+        "          @tasks=@tasks.where(status: params[:task][:status])",
+        "        end",
+        "        ",
+        "        if params[:task][:name]!=\"\" && params[:task][:status]!=\"\"",
+        "          @tasks=@tasks.where(\"name LIKE ?\", \"%\"+params[:task][:name]+\"%\").where(status: params[:task][:status])",
+        "        end",
+        "        # binding.pry",
+        "      ",
+        "    end",
+        "    ",
+        "  end",
+        "",
+        "  def new",
+        "    @task = Task.new",
+    ],
+    "description": ""
+}
+
+
+}
+
+
+
+

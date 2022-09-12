@@ -49,6 +49,14 @@ heroku create
 ```
 
 ```terminal
+heroku buildpacks:set heroku/ruby
+```
+
+```terminal
+heroku buildpacks:add --index 1 heroku/nodejs
+```
+
+```terminal
 heroku apps:info
 ```
 
