@@ -35,9 +35,6 @@ describe 'タスクモデル機能', type: :model do
     let!(:third_task) { FactoryBot.create(:third_task)}
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
-        
-        binding.pry
-        
         expect(Task.name_search('task')).to include(first_task)
         expect(Task.name_search('task')).not_to include(second_task)
         expect(Task.name_search('task').count).to eq 2
@@ -45,9 +42,6 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'scopeメソッドでステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
-        
-        binding.pry
-        
         expect(Task.status_search('未着手')).to include(second_task)
         expect(Task.status_search('未着手')).not_to include(first_task)
         expect(Task.status_search('未着手').count).to eq 2
@@ -56,9 +50,6 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
       it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
-        
-        binding.pry
-        
         expect(Task.name_search('task').status_search('着手中')).to include(first_task)
         expect(Task.name_search('task').status_search('着手中')).not_to include(second_task)
         expect(Task.name_search('task').status_search('着手中').count).to eq 1
