@@ -22,6 +22,12 @@
   <%= form.label :content %><br>
   <%= form.text_area :content %><br>
 <br>
+<%= form.datetime_local_field :limit %><br>  
+<br>
+<%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %><br>
+<br>
+<%= form.select :priority, [["低", "低"], ["中", "中"], ["高", "高"]], include_blank: "選択して下さい" %><br>
+<br>
   <%= form.submit "編集する"%>
 
 <% end %>
