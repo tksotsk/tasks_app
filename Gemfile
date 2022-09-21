@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'kaminari'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'bcrypt'
 
 
 group :development, :test do

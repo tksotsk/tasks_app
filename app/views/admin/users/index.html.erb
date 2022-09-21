@@ -1,0 +1,41 @@
+
+
+
+
+<% link1_sentence="戻る" %>
+<% link1_url=admin_users_path %>
+<br>
+<br>
+
+
+<p><%= link_to "作成", new_admin_user_path %></p>
+
+
+
+
+<table >
+  <thead>
+    <tr>
+      <th>管理者権限</th>
+      <th><%= t('activerecord.attributes.user.name') %></th>
+      <th><%= t('activerecord.attributes.user.email') %></th>
+      <th><%= t('.count') %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        
+        <td><%= if user.admin then "☑管理者" else "☐　一般" end%></td>
+        <td><%= user.name %>さん</td>
+        <td><%= user.email %></td>
+        <td><%= user.tasks.count %></td>
+        <td></td>
+        <td><%= link_to "編集", edit_admin_user_path(user.id)%></td>
+        <td><%= link_to "削除", admin_user_path(user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,18 @@
+
+<h1><%= @user.name %>さんのページ</h1>
+<p>メールアドレス：<%= @user.email %></p>
+<p><%= link_to "戻る",  tasks_path %></p>
+
+<% @tasks.each do |task| %>
+<h4 class= "task_name_row"><%= t('activerecord.attributes.task.name') %>:<%= task.name%></h4>
+<p><%= t('activerecord.attributes.task.content') %>:<%= task.content %></p>
+<p class= "task_limit_row"><%= t('activerecord.attributes.task.limit') %>:<%= task.ja_limit %></p>
+<p class= "task_status_row"><%= t('activerecord.attributes.task.status') %>:<%= task.status %></p>
+<% pr=["低", "中", "高"] %>
+<p class= "task_priority_row"><%= t('activerecord.attributes.task.priority') %>:<%= pr[task.priority] if task.priority%></p>
+
+<p><%= link_to t('.show'), task_path(task.id) %></p>
+<p><%= link_to t('.edit'), edit_task_path(task.id) %></p>
+<p><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<hr>
+<% end %>

@@ -1,0 +1,20 @@
+ <%= form_with(model:@user,local:true, url: admin_user_path) do |f| %>
+  <tr>
+    <td>管理者権限</td>
+    <td><%= f.label :name %></td>
+    <td><%= f.label :email %></td>
+    <td><%= f.label :password %></td>
+    <td><%= f.label :password_confirmation %></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><%= f.check_box :admin,:as => :boolean, checked: false %></td>
+    <td><%= f.text_field :name %></td>
+    <td><%= f.email_field :email %></td>
+    <td><%= f.password_field :password %></td>
+    <td><%= f.password_field :password_confirmation %></td>
+    <td><%= f.submit "編集する" %></td>
+  </tr>
+<% end %>
+
+<p><%= link_to "詳細ページ", user_path(@user.id) %></p>

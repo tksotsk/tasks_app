@@ -1,3 +1,6 @@
+
+<h3><%= @user.name %>さんのページ</h3>
+<br>
 <p><%= link_to t('tasks.index.new'), new_task_path %></p>
 
 
@@ -19,7 +22,8 @@
 <hr>
 
 <% @tasks.each do |task| %>
-<h4 class= "task_name_row"><%= t('activerecord.attributes.task.name') %>:<%= task.name%></h4>
+<h4><%= task.user.name%>さんのタスク</h4>
+<p class= "task_name_row"><%= t('activerecord.attributes.task.name') %>:<%= task.name%></p>
 <p><%= t('activerecord.attributes.task.content') %>:<%= task.content %></p>
 <p class= "task_limit_row"><%= t('activerecord.attributes.task.limit') %>:<%= task.ja_limit %></p>
 <p class= "task_status_row"><%= t('activerecord.attributes.task.status') %>:<%= task.status %></p>
