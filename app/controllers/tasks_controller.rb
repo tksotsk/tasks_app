@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
   def index
-    
+    @user=User.find(current_user.id)
+    @tasks=Task.all
     @tasks=params[:sort_expired] && params[:sort_expired]=="true1"?
-    Task.page(params[:page]).per(6).sort_limit :
+    @tasks.page(params[:page]).per(6).sort_limit :
     params[:sort_expired] && params[:sort_expired]=="true2"?
-    Task.page(params[:page]).per(6).sort_priority :
-    Task.page(params[:page]).per(6).sort_created_at
+    @tasks.page(params[:page]).per(6).sort_priority :
+    @tasks.page(params[:page]).per(6).sort_created_at
     
     
     if  @tasks && params[:task]
@@ -22,7 +23,6 @@ class TasksController < ApplicationController
       if params[:task][:name]!="" && params[:task][:status]!=""
         @tasks=@tasks.name_search(params[:task][:name]).status_search(params[:task][:status])
       end
-      # binding.pry
       
     end
     
@@ -33,8 +33,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:name, :content, :limit, :status, :priority))
-    
+    @task = current_user.tasks.build(params.require(:task).permit(:name, :content, :limit, :status, :priority))
+
     
     
     if @task.save

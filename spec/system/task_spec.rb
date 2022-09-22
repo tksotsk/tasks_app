@@ -2,9 +2,17 @@ require 'rails_helper'
 Task.delete_all
 RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do
+    
+    
+    before do
+      user=FactoryBot.create(:user)
+      visit new_session_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'ログイン'
+    end
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
-        
         visit new_task_path
         # expect(page).to have_content 'task'
         # expect(page).to have_content 'Task'
@@ -24,9 +32,15 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '一覧表示機能' do
     # let!(:task){FactoryBot.create(:task)}
     before do
-      task1 = FactoryBot.create(:task1)
-      task2 = FactoryBot.create(:task2)
-      task3 = FactoryBot.create(:task3)
+      admin=FactoryBot.create(:admin_user) 
+      user=FactoryBot.create(:user) 
+      task1 = FactoryBot.create(:task1, user_id: user.id)
+      task2 = FactoryBot.create(:task2, user_id: user.id)
+      task3 = FactoryBot.create(:task3, user_id: user.id)
+      visit new_session_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'ログイン'
       visit tasks_path
     end
     context '一覧画面に遷移した場合' do
@@ -84,12 +98,17 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   
   describe '詳細表示機能' do
+    before do
+      user=FactoryBot.create(:user)
+      visit new_session_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'ログイン'
+      task=FactoryBot.create(:task1, user_id: user.id)
+      visit task_path(task.id)
+    end
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
-        
-        
-        task=FactoryBot.create(:task1)
-        visit task_path(task.id)
         
         expect(page).to have_content "task"
         expect(page).to have_content "content"
@@ -100,10 +119,14 @@ RSpec.describe 'タスク管理機能', type: :system do
   
   describe '検索機能' do
     before do
-      
-      task1 = FactoryBot.create(:task1)
-      task2 = FactoryBot.create(:task2)
-      task3 = FactoryBot.create(:task3)
+      user=FactoryBot.create(:user)
+      visit new_session_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'ログイン'
+      task1 = FactoryBot.create(:task1, user_id: user.id)
+      task2 = FactoryBot.create(:task2, user_id: user.id)
+      task3 = FactoryBot.create(:task3, user_id: user.id)
       visit tasks_path
     end
     

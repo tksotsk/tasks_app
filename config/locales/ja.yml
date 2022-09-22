@@ -248,3 +248,7 @@ ja:
       new:  新しくタスクをつくる
       destroy: タスクを削除する
       back: 一覧画面に戻る
+  admin:
+    users:
+      index: 
+        count: タスクの数
