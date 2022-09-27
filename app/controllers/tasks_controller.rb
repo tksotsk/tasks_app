@@ -10,22 +10,10 @@ class TasksController < ApplicationController
     
     
     if  @tasks && params[:task]
-      
-      
-      if params[:task][:name]!="" && params[:task][:status]==""
-        @tasks=@tasks.name_search(params[:task][:name])
-      end
-      
-      if params[:task][:name]=="" && params[:task][:status]!=""
-        @tasks=@tasks.status_search(params[:task][:status])
-      end
-      
-      if params[:task][:name]!="" && params[:task][:status]!=""
-        @tasks=@tasks.name_search(params[:task][:name]).status_search(params[:task][:status])
-      end
-      
+      @tasks=@tasks.name_search(params[:task][:name]) if params[:task][:name]!=""
+      @tasks=@tasks.status_search(params[:task][:status]) if params[:task][:status]!=""
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:task][:label_id] }) if params[:task][:label_id]!=""
     end
-    
   end
     
   def new
@@ -33,17 +21,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.build(params.require(:task).permit(:name, :content, :limit, :status, :priority))
-
-    
-    
+    @task = current_user.tasks.build(params.require(:task).permit(:name, :content, :limit, :status, :priority, { label_ids: [] }))
     if @task.save
       redirect_to task_path(@task.id)
       flash[:success] = "タスクを作成しました"
     else
       render :new
     end
-  end
+  end 
 
   def show
     @task = Task.find(params[:id])
@@ -57,7 +42,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     
-    if @task.update(params.require(:task).permit(:name, :content, :limit, :status, :priority))
+    if @task.update(params.require(:task).permit(:name, :content, :limit, :status, :priority, { label_ids: [] }))
       redirect_to tasks_path
       flash[:success] = "タスクを編集しました"
     else

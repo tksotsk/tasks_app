@@ -10,6 +10,11 @@
 <p class= "task_status_row"><%= t('activerecord.attributes.task.status') %>:<%= task.status %></p>
 <% pr=["低", "中", "高"] %>
 <p class= "task_priority_row"><%= t('activerecord.attributes.task.priority') %>:<%= pr[task.priority] if task.priority%></p>
+<p>
+  <% task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
 
 <p><%= link_to t('.show'), task_path(task.id) %></p>
 <p><%= link_to t('.edit'), edit_task_path(task.id) %></p>

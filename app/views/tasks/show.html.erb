@@ -5,7 +5,11 @@
 <p><%= @task.status %></p>
 <% pr=["低", "中", "高"] %>
 <p><%= pr[@task.priority] if @task.priority%></p>
-
+<p>
+  <% @task.labels.each do |label| %>
+    <label style="background-color: aquamarine"><%= label.name %></label>
+  <% end %>
+</p>
 
 <%= link_to t('.back'), tasks_path %>
 
