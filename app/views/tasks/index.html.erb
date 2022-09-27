@@ -12,6 +12,8 @@
 　<br>
 　<%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], include_blank: "選択して下さい" %><br>
 　<br>
+  <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+  <br>
 　<%= form.submit "検索する"%>
 
 <% end %>
@@ -20,8 +22,9 @@
 <p><%= link_to t('tasks.index.priority'),  tasks_path(sort_expired: "true2") %></p>
 <p><%= link_to t('tasks.index.back'),  tasks_path %></p>
 <hr>
-
+<div class="tasks">
 <% @tasks.each do |task| %>
+<div class="task">
 <h4><%= task.user.name%>さんのタスク</h4>
 <p class= "task_name_row"><%= t('activerecord.attributes.task.name') %>:<%= task.name%></p>
 <p><%= t('activerecord.attributes.task.content') %>:<%= task.content %></p>
@@ -29,12 +32,21 @@
 <p class= "task_status_row"><%= t('activerecord.attributes.task.status') %>:<%= task.status %></p>
 <% pr=["低", "中", "高"] %>
 <p class= "task_priority_row"><%= t('activerecord.attributes.task.priority') %>:<%= pr[task.priority] if task.priority%></p>
+<p>
+  <% task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
 
 <p><%= link_to t('.show'), task_path(task.id) %></p>
 <p><%= link_to t('.edit'), edit_task_path(task.id) %></p>
 <p><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+</div>
+
 <hr>
 <% end %>
+</div>
 <br>
 <%= paginate @tasks %>
 
